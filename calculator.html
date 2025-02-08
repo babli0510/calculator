@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>Practical 5 - Calculator</title>
+<style>
+button {
+    height: 50px;
+    width: 100px;
+}
+input {
+    height: 50px;
+    width: 410px;
+    text-align: right;
+    font-size: 18px;
+}
+.container
+{
+height:500px;
+width:500px;
+border:solid 5px black;
+
+}
+</style>
+</head>
+<body>
+<center>
+<div class="container">
+<h2><span style="color:blue;">CAL</span><span style="color:red;">CULATOR</span></h2><br><br><br>
+<input type="text" id="display" required autofocus>
+<br>
+
+<button type="button" name="clear" onclick="clearDisplay()" style="background-color:orange;">AC</button>
+<button type="button" name="mod" onclick="calculate('%')" style="background-color:orange;">%</button>
+<button type="button" name="backspace" onclick="backspace()" style="background-color:orange;">&#x232b;</button>
+<button type="button" name="div" onclick="calculate('/')" style="background-color:orange;">/</button>
+<br>
+<button type="button" name="seven" onclick="number('7')" style="background-color:gray;">7</button>
+<button type="button" name="eight" onclick="number('8')" style="background-color:gray;">8</button>
+<button type="button" name="nine" onclick="number('9')" style="background-color:gray;">9</button>
+<button type="button" name="mul" onclick="calculate('*')" style="background-color:orange;">*</button>
+<br>
+<button type="button" name="four" onclick="number('4')" style="background-color:gray;">4</button>
+<button type="button" name="five" onclick="number('5')" style="background-color:gray;">5</button>
+<button type="button" name="six" onclick="number('6')" style="background-color:gray;">6</button>
+<button type="button" name="sub" onclick="calculate('-')" style="background-color:orange;">-</button>
+<br>
+<button type="button" name="one" onclick="number('1')" style="background-color:gray;">1</button>
+<button type="button" name="two" onclick="number('2')" style="background-color:gray;">2</button>
+<button type="button" name="three" onclick="number('3')" style="background-color:gray;">3</button>
+<button type="button" name="add" onclick="calculate('+')" style="background-color:orange;">+</button>
+<br>
+<button type="button" name="doublezero" onclick="number('00')" style="background-color:gray;">00</button>
+<button type="button" name="zero" onclick="number('0')" style="background-color:gray;">0</button>
+<button type="button" name="dot" onclick="number('.')" style="background-color:gray;">.</button>
+<button type="button" name="equal" onclick="result()" style="background-color:orange;">=</button>
+</div>
+</center>
+<script>
+/*
+document.getElementById("display").value gets the current value inside the input field with the id of "display".
++= num takes the existing value and adds (or concatenates) the value of num to it.
+*/
+function number(num)
+ {
+    document.getElementById("display").value += num;
+}
+
+function calculate(operator) {
+    document.getElementById("display").value += operator;
+}
+
+function clearDisplay()
+ {
+    document.getElementById("display").value = "";
+}
+
+function backspace()
+ {
+    let display = document.getElementById("display");
+	//display.value: This retrieves the current value inside the display(whatever numbers or operators are currently shown).
+    display.value = display.value.slice(0, -1);
+	/*
+	slice(0, -1): This method is used to remove the last character from the string.
+	The first argument (0) is the start index
+	The second argument (-1) is the end index
+	*/
+}
+
+function result() 
+{
+    let display = document.getElementById("display");
+	/*
+	eval() is a JavaScript function that can take a string and evaluate it as a math expression.
+	It processes the entire string in the display as a valid mathematical expression 
+	and performs the actual calculations.
+	*/
+    try 
+	{
+        display.value = eval(display.value);
+    } catch (e) {
+        display.value = "Error";
+    }
+}
+</script>
+
+</body>
+</html>
